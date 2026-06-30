@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aysén Vivo · Turismo Sostenible en la Patagonia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#inicio" class="logo">
+        <span class="logo-mark" aria-hidden="true">⛰</span>
+        <span class="logo-text">Aysén Vivo</span>
+      </a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#experiencias">Experiencias</a>
+        <a href="#reserva">Reservar</a>
+        <a href="#nosotros">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Región de Aysén · Patagonia, Chile</p>
+        <h1>El territorio no se visita.<br>Se recorre con cuidado.</h1>
+        <p class="hero-lede">
+          Aysén Vivo conecta a viajeros con emprendedores locales de Coyhaique, Puerto Aysén,
+          Chile Chico, Caleta Tortel y Cochrane. Cada experiencia tiene cupo limitado:
+          así protegemos los fiordos, glaciares y bosques que nos prestan.
+        </p>
+        <div class="hero-actions">
+          <a href="#experiencias" class="btn btn-primary">Ver experiencias</a>
+          <a href="#reserva" class="btn btn-ghost">Reservar ahora</a>
+        </div>
+        <dl class="hero-stats" id="hero-stats" aria-label="Resumen de cupos">
+          <div class="stat">
+            <dt>Experiencias activas</dt>
+            <dd id="stat-experiencias">—</dd>
+          </div>
+          <div class="stat">
+            <dt>Cupos disponibles hoy</dt>
+            <dd id="stat-cupos">—</dd>
+          </div>
+          <div class="stat">
+            <dt>Localidades</dt>
+            <dd id="stat-localidades">—</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <div class="contour-divider" aria-hidden="true">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 C650,60 850,0 1000,30 C1100,50 1150,20 1200,30 L1200,60 L0,60 Z"></path></svg>
+    </div>
+
+    <!-- EXPERIENCIAS -->
+    <section id="experiencias" class="experiencias-section">
+      <div class="section-inner">
+        <header class="section-head">
+          <p class="eyebrow">Catálogo</p>
+          <h2>Experiencias de bajo impacto</h2>
+          <p class="section-lede">Filtra por categoría. Cada cupo que se reserva aquí es un cupo que el territorio puede sostener.</p>
+        </header>
+
+        <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría">
+          <button type="button" class="filtro-btn activo" data-categoria="Todos">Todos</button>
+          <button type="button" class="filtro-btn" data-categoria="Navegación">Navegación</button>
+          <button type="button" class="filtro-btn" data-categoria="Trekking">Trekking</button>
+          <button type="button" class="filtro-btn" data-categoria="Pesca">Pesca</button>
+          <button type="button" class="filtro-btn" data-categoria="Cultura">Cultura</button>
+        </div>
+
+        <div id="tarjetas-experiencias" class="tarjetas-grid" aria-live="polite">
+          <!-- Tarjetas generadas dinámicamente por renderExperiencias() en script.js -->
+        </div>
+      </div>
+    </section>
+
+    <div class="contour-divider flip" aria-hidden="true">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 C650,60 850,0 1000,30 C1100,50 1150,20 1200,30 L1200,60 L0,60 Z"></path></svg>
+    </div>
+
+    <!-- RESERVA -->
+    <section id="reserva" class="reserva-section">
+      <div class="section-inner reserva-grid">
+        <header class="section-head">
+          <p class="eyebrow">Paso final</p>
+          <h2>Reserva tu experiencia</h2>
+          <p class="section-lede">
+            Completa el formulario. Validamos cada campo en el navegador antes de confirmar,
+            para que tu reserva nunca supere el cupo disponible.
+          </p>
+        </header>
+
+        <form id="form-reserva" class="form-reserva" novalidate>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Javiera Soto" autocomplete="name">
+            <p class="error-msg" id="error-nombre"></p>
+          </div>
+
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input type="text" id="email" name="email" placeholder="javiera@correo.cl" autocomplete="email">
+            <p class="error-msg" id="error-email"></p>
+          </div>
+
+          <div class="campo">
+            <label for="experiencia">Experiencia</label>
+            <select id="experiencia" name="experiencia">
+              <option value="">Selecciona una experiencia</option>
+              <!-- Opciones generadas dinámicamente desde el arreglo "experiencias" -->
+            </select>
+            <p class="error-msg" id="error-experiencia"></p>
+          </div>
+
+          <div class="campo campo-mitad">
+            <label for="personas">N° de personas</label>
+            <input type="number" id="personas" name="personas" min="1" placeholder="1">
+            <p class="error-msg" id="error-personas"></p>
+          </div>
+
+          <div class="campo campo-mitad">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha">
+            <p class="error-msg" id="error-fecha"></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-reservar">Confirmar reserva</button>
+
+          <p class="success-msg" id="success-msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="nosotros" class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark" aria-hidden="true">⛰</span>
+        <span class="logo-text">Aysén Vivo</span>
+        <p>Turismo de bajo impacto en la Patagonia chilena.</p>
+      </div>
+      <p class="footer-meta">Programación Front End (TI3V31) · Evaluación UA2 · INACAP</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
